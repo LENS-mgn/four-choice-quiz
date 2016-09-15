@@ -17,12 +17,12 @@ class Result {
 	 * ResultView constructor.
 	 */
 	public function __construct() {
-
+		add_filter( 'wpseo_canonical', [ $this, 'canonical_url' ] );
 		add_action( 'query_vars', [ $this, 'add_point_query_var' ] );
 		add_filter( 'the_content', [ $this, 'the_content' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		//add_filter( 'jetpack_images_get_images', [ $this, 'jetpack_images_get_images' ], 10, 3 );
-		add_filter( 'get_post_metadata', [ $this, 'get_post_metadata'], 10, 4 );
+		add_filter( 'get_post_metadata', [ $this, 'get_post_metadata' ], 10, 4 );
 
 	}
 
@@ -31,6 +31,22 @@ class Result {
 		$vars[] = 'embedid';
 
 		return $vars;
+	}
+
+	public function canonical_url( $url ) {
+		if ( ! is_singular() ) {
+			return $url;
+		}
+
+		$post = get_post();
+		if ( 'quiz' == get_post_type( $post ) ) {
+			return add_query_arg( [
+				'point'   => intval( get_query_var( 'point' ) ),
+				'embedid' => intval( get_query_var( 'embedid' ) ),
+			], $url );
+		}
+
+		return $url;
 	}
 
 	private function get_point() {
@@ -50,16 +66,18 @@ class Result {
 			return $metadata;
 		}
 
-		if( $meta_key == '_thumbnail_id' ) {
+		if ( $meta_key == '_thumbnail_id' ) {
 			$filtered = array_filter( $this->get_images( $post_id ), function ( $image ) {
 				return ( $image['threshold'] <= $this->get_point() );
 			} );
 
-			if( !empty( $filtered ) ) {
+			if ( ! empty( $filtered ) ) {
 				$result = end( $filtered );
+
 				return $result['image_id'];
 			}
 		}
+
 		return $metadata;
 	}
 
@@ -69,18 +87,17 @@ class Result {
 	 *
 	 * @return array|string
 	 */
-	private function get_result_image( $post_id , $html = true, $size = 'full' ) {
+	private function get_result_image( $post_id, $html = true, $size = 'full' ) {
 		$filtered = array_filter( $this->get_images( $post_id ), function ( $image ) {
 			return ( $image['threshold'] <= $this->get_point() );
 		} );
 
 		$result = end( $filtered );
 		if ( $result ) {
-			if( $html ) {
+			if ( $html ) {
 				return wp_get_attachment_image( $result['image_id'], $size );
-			}
-			else {
-				return wp_get_attachment_image_src(  $result['image_id'], $size );
+			} else {
+				return wp_get_attachment_image_src( $result['image_id'], $size );
 			}
 		}
 
@@ -103,7 +120,7 @@ class Result {
 			return $media;
 		}
 
-		$result_image = $this->get_result_image( $post_id , false );
+		$result_image = $this->get_result_image( $post_id, false );
 
 		$media = array(
 			'type'       => 'image',
@@ -111,10 +128,10 @@ class Result {
 			'src'        => $result_image[0],
 			'src_width'  => $result_image[1],
 			'src_height' => $result_image[2],
-			'href'       => get_permalink($result_image[0])
+			'href'       => get_permalink( $result_image[0] )
 		);
 
-		return array($media);
+		return array( $media );
 	}
 
 	private function get_app_page_link() {

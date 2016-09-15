@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Four-choice-quiz
- * Version: 0.1.1
+ * Version: 0.1.2
  * Description: PLUGIN DESCRIPTION HERE
  * Author: YOUR NAME HERE
  * Author URI: YOUR SITE HERE

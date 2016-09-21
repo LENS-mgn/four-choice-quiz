@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0",
+  "version": "0.1.4",
   "description": "",
   "scripts": {
     "js:build": "browserify ./src/scripts/app.jsx  -t [ babelify ] -t [ localenvify ] --extension=jsx -o ./bundle.js",

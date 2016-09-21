@@ -23,7 +23,7 @@ class Result {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 		//add_filter( 'jetpack_images_get_images', [ $this, 'jetpack_images_get_images' ], 10, 3 );
 		add_filter( 'get_post_metadata', [ $this, 'get_post_metadata' ], 10, 4 );
-
+		add_filter( 'post_type_link', [ $this, 'post_link' ], 10, 2 );
 	}
 
 	public function add_point_query_var( $vars ) {
@@ -171,16 +171,28 @@ class Result {
 	}
 
 	private function get_share_link() {
-		$post = get_post();
-		$url = get_permalink( $post );
-		if ( 'quiz' == get_post_type( $post ) ) {
-			return add_query_arg( [
-				'point'   => intval( get_query_var( 'point' ) ),
-				'embedid' => intval( get_query_var( 'embedid' ) ),
-			], $url );
+		return get_permalink();
+
+	}
+
+	/**
+	 * @param String $link
+	 * @param \WP_Post $post
+	 *
+	 * @return String
+	 */
+	public function post_link( $link, $post ) {
+
+		if ( 'quiz' != get_post_type( $post ) ) {
+			return $link;
 		}
 
-		return $url;
+		return add_query_arg( [
+			'point'   => intval( get_query_var( 'point' ) ),
+			'embedid' => intval( get_query_var( 'embedid' ) ),
+		], $link );
+
+
 	}
 
 	private function get_share_buttons() {

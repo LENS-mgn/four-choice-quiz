@@ -187,7 +187,7 @@ class Result {
 
 		$line = sprintf(
 			'<a href="http://line.me/R/msg/text/?%s%%0D%%0A%s"><img src="https://media.line.me/img/button/ja/82x20.png" width="82" height="20" alt="LINEで送る">',
-			'タイトル',
+			get_the_title(),
 			$this->get_share_link()
 		);
 
@@ -195,7 +195,7 @@ class Result {
 
 		$twitter = sprintf(
 			'<a href="https://twitter.com/share" class="twitter-share-button" data-text="%s" data-url="%s">Tweet</a>',
-			'タイトル',
+			get_the_title(),
 			$this->get_share_link()
 		);
 

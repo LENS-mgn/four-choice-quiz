@@ -171,7 +171,16 @@ class Result {
 	}
 
 	private function get_share_link() {
-		return get_permalink();
+		$post = get_post();
+		$url = get_permalink( $post );
+		if ( 'quiz' == get_post_type( $post ) ) {
+			return add_query_arg( [
+				'point'   => intval( get_query_var( 'point' ) ),
+				'embedid' => intval( get_query_var( 'embedid' ) ),
+			], $url );
+		}
+
+		return $url;
 	}
 
 	private function get_share_buttons() {

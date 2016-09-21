@@ -210,7 +210,7 @@ class Result {
 			get_the_title(),
 			$this->get_share_link()
 		);
-
-		return $twitter . $facebook;
+		return false;
+		//return $twitter . $facebook;
 	}
 }

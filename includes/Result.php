@@ -162,7 +162,7 @@ class Result {
 			<div class="result-image">%s</div>
 			<p class="share-comment">結果をみんなに知らせて盛り上がりましょう。SNSボタンをクリック！</p>
 			<div class="share-buttons">%s</div>
-			%s,
+			%s
 			',
 			$this->get_result_image( get_the_ID() ),
 			$this->get_share_buttons(),

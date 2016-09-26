@@ -24,6 +24,16 @@ trait Fields {
 	}
 
 	/**
+	 * @param $post_id
+	 *
+	 * @return int
+	 */
+	public function get_questions_count( $post_id ) {
+		$questions = $this->get_questions( $post_id );
+		return count( $questions );
+	}
+
+	/**
 	 * @param array $question
 	 * @return array
 	 */

@@ -55,6 +55,7 @@ class Result {
 		return intval( $point );
 	}
 
+
 	public function get_post_metadata( $metadata, $post_id, $meta_key, $single ) {
 
 		if ( is_admin() ) {
@@ -160,11 +161,14 @@ class Result {
 		return sprintf(
 			'
 			<div class="result-image">%s</div>
+			<p class="result-score">成績:%d/%d</p>
 			<p class="share-comment">結果をみんなに知らせて盛り上がりましょう。SNSボタンをクリック！</p>
 			<div class="share-buttons">%s</div>
 			%s
 			',
 			$this->get_result_image( get_the_ID() ),
+			$this->get_point(),
+			$this->get_questions_count( $post->ID ),
 			$this->get_share_buttons(),
 			$question_link
 		);
@@ -210,6 +214,7 @@ class Result {
 			get_the_title(),
 			$this->get_share_link()
 		);
+
 		return false;
 		//return $twitter . $facebook;
 	}

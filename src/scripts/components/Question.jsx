@@ -17,6 +17,11 @@ class Question extends React.Component {
 		return ( answer === userAnswer );
 	}
 
+	getAnswer() {
+		let {answer,options} = this.props;
+		return options[answer].value;
+	}
+
 	render() {
 		let {question, comment, options, className, isLast, onNextClick, onOptionClick, questionID, userAnswer, answer} = this.props;
 
@@ -42,6 +47,7 @@ class Question extends React.Component {
 						isCorrect={this.isCorrect()}
 					/>
 				</div>
+				{(() => { return this.isAnswered() ? <p className="four-choice-quiz-question__answer">答え：{this.getAnswer()}</p>: null; })()}
 				<p className="four-choice-quiz-question__comment"
 					style={{
 						display: this.isAnswered() ? 'block' : 'none'

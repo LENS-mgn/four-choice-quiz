@@ -36057,21 +36057,30 @@ var Question = function (_React$Component) {
 			return answer === userAnswer;
 		}
 	}, {
+		key: 'getAnswer',
+		value: function getAnswer() {
+			var _props2 = this.props;
+			var answer = _props2.answer;
+			var options = _props2.options;
+
+			return options[answer].value;
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var _this2 = this;
 
-			var _props2 = this.props;
-			var question = _props2.question;
-			var comment = _props2.comment;
-			var options = _props2.options;
-			var className = _props2.className;
-			var isLast = _props2.isLast;
-			var onNextClick = _props2.onNextClick;
-			var onOptionClick = _props2.onOptionClick;
-			var questionID = _props2.questionID;
-			var userAnswer = _props2.userAnswer;
-			var answer = _props2.answer;
+			var _props3 = this.props;
+			var question = _props3.question;
+			var comment = _props3.comment;
+			var options = _props3.options;
+			var className = _props3.className;
+			var isLast = _props3.isLast;
+			var onNextClick = _props3.onNextClick;
+			var onOptionClick = _props3.onOptionClick;
+			var questionID = _props3.questionID;
+			var userAnswer = _props3.userAnswer;
+			var answer = _props3.answer;
 
 
 			return _react2.default.createElement(
@@ -36109,6 +36118,14 @@ var Question = function (_React$Component) {
 						isCorrect: this.isCorrect()
 					})
 				),
+				function () {
+					return _this2.isAnswered() ? _react2.default.createElement(
+						'p',
+						{ className: 'four-choice-quiz-question__answer' },
+						'答え：',
+						_this2.getAnswer()
+					) : null;
+				}(),
 				_react2.default.createElement(
 					'p',
 					{ className: 'four-choice-quiz-question__comment',

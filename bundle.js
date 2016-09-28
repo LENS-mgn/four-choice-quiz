@@ -36063,8 +36063,10 @@ var Question = function (_React$Component) {
 			var answer = _props2.answer;
 			var options = _props2.options;
 
-			var index = answer - 1;
-			return options[index].value;
+			var correct = options.filter(function (option) {
+				return option.index + 1 == answer;
+			});
+			return correct[0].value;
 		}
 	}, {
 		key: 'render',

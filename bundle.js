@@ -36063,7 +36063,8 @@ var Question = function (_React$Component) {
 			var answer = _props2.answer;
 			var options = _props2.options;
 
-			return options[answer].value;
+			var index = answer - 1;
+			return options[index].value;
 		}
 	}, {
 		key: 'render',

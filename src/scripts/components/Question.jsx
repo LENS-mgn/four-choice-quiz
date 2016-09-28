@@ -19,7 +19,8 @@ class Question extends React.Component {
 
 	getAnswer() {
 		let {answer,options} = this.props;
-		return options[answer].value;
+		let index = answer - 1;
+		return options[index].value;
 	}
 
 	render() {

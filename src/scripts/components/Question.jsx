@@ -19,8 +19,10 @@ class Question extends React.Component {
 
 	getAnswer() {
 		let {answer,options} = this.props;
-		let index = answer - 1;
-		return options[index].value;
+		let correct = options.filter((option) => {
+			return option.index + 1 == answer;
+		});
+		return correct[0].value;
 	}
 
 	render() {

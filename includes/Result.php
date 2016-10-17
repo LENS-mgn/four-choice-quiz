@@ -161,7 +161,7 @@ class Result {
 		return sprintf(
 			'
 			<div class="result-image">%s</div>
-			<p class="result-score">成績:%d/%d</p>
+			<p class="result-score">あなたの成績<br><span class="collect">%d問正解!</span> / 全%d問中</p>
 			<p class="share-comment">結果をみんなに知らせて盛り上がりましょう。SNSボタンをクリック！</p>
 			<div class="share-buttons">%s</div>
 			%s

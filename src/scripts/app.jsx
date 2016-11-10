@@ -7,9 +7,10 @@ import reducers from './reducers'
 import { fetchData, init } from './actions';
 import createLogger from 'redux-logger';
 import thunk        from 'redux-thunk';
+import {scrollQuestion} from "./middlewares/index";
 const logger = createLogger();
 
-const store = createStore(reducers, applyMiddleware( thunk, logger ) );
+const store = createStore(reducers, applyMiddleware( thunk, scrollQuestion, logger ) );
 
 let container = document.querySelector('.four-choice-quiz-app' );
 if ( container ) {

@@ -31,7 +31,7 @@ class Question extends React.Component {
 		return (
 			<div className={'four-choice-quiz-question ' + className}>
 				<h3  className="four-choice-quiz-question__title">{question}</h3>
-				{(() => { return image ? <img src={image} className="four-choice-quiz-question__answer" />: null; })()}
+				{(() => { return image ? <img src={image} className="four-choice-quiz-question__image" />: null; })()}
 				<div className="four-choice-quiz-question__box">
 					<ol className="four-choice-quiz-question__options">
 						{options.map((option) =>

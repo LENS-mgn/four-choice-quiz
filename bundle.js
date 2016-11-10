@@ -36494,11 +36494,13 @@ var _reduxThunk = require('redux-thunk');
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
+var _index = require('./middlewares/index');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var logger = (0, _reduxLogger2.default)();
 
-var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, logger));
+var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, _index.scrollQuestion, logger));
 
 var container = document.querySelector('.four-choice-quiz-app');
 if (container) {
@@ -36520,7 +36522,7 @@ if (container) {
 	});
 }
 
-},{"./actions":249,"./components/App":251,"./reducers":259,"react":204,"react-dom":54,"react-redux":57,"redux":217,"redux-logger":210,"redux-thunk":211}],251:[function(require,module,exports){
+},{"./actions":249,"./components/App":251,"./middlewares/index":259,"./reducers":260,"react":204,"react-dom":54,"react-redux":57,"redux":217,"redux-logger":210,"redux-thunk":211}],251:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37115,6 +37117,38 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Questions);
 
 },{"../actions":249,"../components/Question":254,"react":204,"react-redux":57}],259:[function(require,module,exports){
+(function (global){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.scrollQuestion = undefined;
+
+var _ActionType = require("../constants/ActionType");
+
+var _ActionType2 = _interopRequireDefault(_ActionType);
+
+var _jquery = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var scrollQuestion = exports.scrollQuestion = function scrollQuestion(store) {
+	return function (next) {
+		return function (action) {
+			if (action.type == _ActionType2.default.NEXT_QUESTION) {
+				var questionPosition = (0, _jquery2.default)(".four-choice-quiz").offset().top;
+				(0, _jquery2.default)('body,html').animate({ scrollTop: questionPosition }, 300, 'swing');
+			}
+			return next(action);
+		};
+	};
+};
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"../constants/ActionType":256}],260:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

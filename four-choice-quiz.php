@@ -1,11 +1,9 @@
 <?php
 /**
  * Plugin Name: Four-choice-quiz
- * Version: 0.2.0
- * Description: PLUGIN DESCRIPTION HERE
- * Author: YOUR NAME HERE
- * Author URI: YOUR SITE HERE
- * Plugin URI: PLUGIN SITE HERE
+ * Version: 0.2.1
+ * Description: four choice quiz
+ * Author: mgn, Toro_Unit
  * Text Domain: four-choice-quiz
  * Domain Path: /languages
  * @package Four-choice-quiz

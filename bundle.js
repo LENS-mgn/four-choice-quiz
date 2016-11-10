@@ -36762,7 +36762,7 @@ var Question = function (_React$Component) {
 					question
 				),
 				function () {
-					return image ? _react2.default.createElement('img', { src: image, className: 'four-choice-quiz-question__answer' }) : null;
+					return image ? _react2.default.createElement('img', { src: image, className: 'four-choice-quiz-question__image' }) : null;
 				}(),
 				_react2.default.createElement(
 					'div',

@@ -57,6 +57,26 @@ class AdminFields {
 			],
 		] );
 
+		$this->cmb2->add_group_field( $question_box_id, [
+			'name'        => __( 'Comment', 'four-choice-quiz' ),
+			'description' => __( 'Comment for selected answer', 'four-choice-quiz' ),
+			'id'          => 'comment',
+			'type'        => 'textarea_small',
+		] );
+
+		$this->cmb2->add_group_field( $question_box_id, [
+			'name'    => 'Image',
+			'id'      => 'image',
+			'type'    => 'file',
+			// Optional:
+			'options' => [
+				'url' => false, // Hide the text input for the url
+			],
+			'text'    => [
+				'add_upload_file_text' => 'Select Image' // Change upload button text. Default: "Add or Upload File"
+			],
+		] );
+
 
 		$this->cmb2->add_group_field( $question_box_id, [
 			'name' => __( 'Question', 'four-choice-quiz' ),
@@ -100,12 +120,7 @@ class AdminFields {
 			],
 		] );
 
-		$this->cmb2->add_group_field( $question_box_id, [
-			'name'        => __( 'Comment', 'four-choice-quiz' ),
-			'description' => __( 'Comment for selected answer', 'four-choice-quiz' ),
-			'id'          => 'comment',
-			'type'        => 'textarea_small',
-		] );
+
 
 	}
 

@@ -26,11 +26,12 @@ class Question extends React.Component {
 	}
 
 	render() {
-		let {question, comment, options, className, isLast, onNextClick, onOptionClick, questionID, userAnswer, answer} = this.props;
+		let {question, comment, options, className, isLast, onNextClick, onOptionClick, questionID, userAnswer, answer, image} = this.props;
 
 		return (
 			<div className={'four-choice-quiz-question ' + className}>
 				<h3  className="four-choice-quiz-question__title">{question}</h3>
+				{(() => { return image ? <img src={image} className="four-choice-quiz-question__answer" />: null; })()}
 				<div className="four-choice-quiz-question__box">
 					<ol className="four-choice-quiz-question__options">
 						{options.map((option) =>

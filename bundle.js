@@ -36750,6 +36750,7 @@ var Question = function (_React$Component) {
 			var questionID = _props3.questionID;
 			var userAnswer = _props3.userAnswer;
 			var answer = _props3.answer;
+			var image = _props3.image;
 
 
 			return _react2.default.createElement(
@@ -36760,6 +36761,9 @@ var Question = function (_React$Component) {
 					{ className: 'four-choice-quiz-question__title' },
 					question
 				),
+				function () {
+					return image ? _react2.default.createElement('img', { src: image, className: 'four-choice-quiz-question__answer' }) : null;
+				}(),
 				_react2.default.createElement(
 					'div',
 					{ className: 'four-choice-quiz-question__box' },
